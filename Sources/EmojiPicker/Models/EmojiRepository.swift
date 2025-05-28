@@ -4,7 +4,6 @@ struct EmojiRepository {
     
     // MARK: - Properties
     
-    static let shared = EmojiRepository()
     private(set) var categories: [EmojiCategory] = []
     private(set) var emojis: [Emoji] = []
     

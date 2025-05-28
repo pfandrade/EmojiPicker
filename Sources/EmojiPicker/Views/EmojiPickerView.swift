@@ -17,8 +17,9 @@ public struct EmojiPickerView: View {
     
     private let isDisplayed: Binding<Bool>
     private let onEmojiSelected: (Emoji) -> Void
-    private let categories = EmojiRepository.shared.categories
-    private let emojis = EmojiRepository.shared.emojis
+    private let emojiRepository = EmojiRepository()
+    private var categories: [EmojiCategory] { emojiRepository.categories }
+    private var emojis: [Emoji] { emojiRepository.emojis }
     
     // MARK: - Observables
     
