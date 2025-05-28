@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct EmojiPickerView: View {
+public struct EmojiPickerView: View {
     
     // MARK: - Constants
     
-    enum Constant {
+    public enum Constant {
         static let backgroundOpacity = 0.05
         static let animationDuration = 0.2
-        static let contentHeight = 390.0
+        public static let contentHeight = 358.0
         static let scrollHeight = 230.0
         static let emojiSize = 40.0
         static let contentCornerRadius = 16.0
@@ -28,7 +28,7 @@ struct EmojiPickerView: View {
     
     // MARK: - Initializers
     
-    init(
+    public init(
         isDisplayed: Binding<Bool>,
         onEmojiSelected: @escaping (Emoji) -> Void
     ) {
@@ -38,16 +38,16 @@ struct EmojiPickerView: View {
     
     // MARK: - Body
     
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            backgroundOverlay
+    public var body: some View {
+//        ZStack(alignment: .bottom) {
+//            backgroundOverlay
             contentView
-        }
-        .animation(
-            .easeIn(duration: Constant.animationDuration),
-            value: isDisplayed.wrappedValue
-        )
-        .ignoresSafeArea()
+//        }
+//        .animation(
+//            .easeIn(duration: Constant.animationDuration),
+//            value: isDisplayed.wrappedValue
+//        )
+//        .ignoresSafeArea()
     }
 }
 
@@ -139,7 +139,7 @@ extension EmojiPickerView {
     
     private var contentView: some View {
         VStack(spacing: .small) {
-            disclosureIndicatorView
+//            disclosureIndicatorView
             sectionTitleText
             ScrollViewReader { proxy in
                 VStack(spacing: .small) {
@@ -149,22 +149,20 @@ extension EmojiPickerView {
             }
         }
         .padding(.top, .small)
-        .padding(.bottom, .extraLarge)
         .frame(height: Constant.contentHeight)
-        .background(.EmojiPicker.background)
         .offset(y: isDisplayed.wrappedValue ? dragOffset : Constant.contentHeight)
         .clipShape(RoundedRectangle(cornerRadius: Constant.contentCornerRadius))
-        .gesture(
-            DragGesture()
-                .onChanged { value in
-                    dragOffset = max(0, value.translation.height)
-                }
-                .onEnded { value in
-                    if value.translation.height > 0 {
-                        isDisplayed.wrappedValue.toggle()
-                        dragOffset = 0
-                    }
-                }
-        )
+//        .gesture(
+//            DragGesture()
+//                .onChanged { value in
+//                    dragOffset = max(0, value.translation.height)
+//                }
+//                .onEnded { value in
+//                    if value.translation.height > 0 {
+//                        isDisplayed.wrappedValue.toggle()
+//                        dragOffset = 0
+//                    }
+//                }
+//        )
     }
 }
